@@ -767,6 +767,66 @@
     }
 
     /* ─────────────────────────────────────────
+       MARKET OPPORTUNITY
+    ───────────────────────────────────────── */
+    #market { background: var(--seaweed); }
+
+    .market-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 52px;
+      margin-bottom: 48px;
+    }
+
+    .market-insight {
+      font-size: 1rem;
+      color: var(--celeste);
+      opacity: 0.75;
+      line-height: 1.85;
+      max-width: 760px;
+      margin-bottom: 48px;
+    }
+
+    .market-report-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      background: rgba(19,79,69,0.28);
+      border: 1px solid rgba(65,255,201,0.2);
+      border-radius: 12px;
+      padding: 36px 40px;
+    }
+    .market-report-cta h3 {
+      color: #fff;
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+    }
+    .market-report-cta > div:first-child p {
+      font-size: 0.9rem;
+      color: var(--celeste);
+      opacity: 0.7;
+      line-height: 1.7;
+      max-width: 460px;
+    }
+    .market-report-action {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .report-note {
+      font-size: 0.72rem;
+      color: var(--celeste);
+      opacity: 0.45;
+      text-align: center;
+      max-width: 190px;
+      line-height: 1.5;
+    }
+
+    /* ─────────────────────────────────────────
        RESPONSIVE
     ───────────────────────────────────────── */
 
@@ -836,6 +896,13 @@
       /* Solution: no gap wasted on hidden diagram */
       .solution-grid { gap: 0; }
 
+      /* Market Opportunity */
+      .market-stats-grid { grid-template-columns: 1fr; }
+      .market-report-cta { flex-direction: column; padding: 28px 24px; gap: 20px; }
+      .market-report-action { width: 100%; }
+      .market-report-action .btn { width: 100%; justify-content: center; }
+      .report-note { max-width: 100%; }
+
       /* Mission strip */
       #mission-strip { padding: 52px 0; }
 
@@ -893,6 +960,7 @@
         <li><a href="#problem">The Problem</a></li>
         <li><a href="#solution">Our Solution</a></li>
         <li><a href="#applications">Applications</a></li>
+        <li><a href="#market">Market</a></li>
         <li><a href="#contact" class="nav-cta">Contact Us</a></li>
       </ul>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
@@ -1051,6 +1119,63 @@
       </div>
     </div>
   </section>
+
+  <!-- wave -->
+  <div class="wave" style="background:var(--bg-mid)">
+    <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,16 C360,64 1080,0 1440,40 L1440,64 L0,64 Z" fill="var(--seaweed)"/>
+    </svg>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       MARKET OPPORTUNITY
+  ══════════════════════════════════════ -->
+  <section id="market" class="section-pad">
+    <div class="container">
+      <p class="eyebrow reveal">Market Opportunity</p>
+      <h2 class="reveal reveal-delay-1">A €670M+ Market<br>Ready for Disruption</h2>
+      <p class="section-lead reveal reveal-delay-2">Independent analysis by Hatch Blue — a global aquaculture innovation consultancy — confirms the commercial scale of SeaCrop's primary target markets in global aquafeed.</p>
+
+      <div class="market-stats-grid">
+        <div class="stat-card reveal reveal-delay-1">
+          <div class="stat-num">€670M+</div>
+          <div class="stat-desc">Total Addressable Market — global salmon &amp; shrimp aquafeed at 6.5% inclusion per year</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <div class="stat-num">€44–64M</div>
+          <div class="stat-desc">Serviceable Addressable Market — realistic 5–15% market capture of primary aquafeed segments</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <div class="stat-num">$347B</div>
+          <div class="stat-desc">Global aquaculture farmgate value (2023) — growing at ~4% CAGR, salmon &amp; shrimp leading</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-4">
+          <div class="stat-num">~10M mt/yr</div>
+          <div class="stat-desc">Combined Atlantic Salmon &amp; Whiteleg Shrimp annual harvest — SeaCrop's primary target species</div>
+        </div>
+      </div>
+
+      <p class="market-insight reveal">SeaCrop is positioned as a next-generation marine ingredient — combining strong nutritional profile (omega-3s, protein, bioactives), potentially unlimited scalability, near-zero land and water footprint, and no dependence on wild fisheries. In Hatch Blue's competitor matrix, SeaCrop occupies a uniquely advantageous position no conventional ingredient currently achieves: high sustainability, high scalability, and high nutritional quality simultaneously.</p>
+
+      <div class="market-report-cta reveal">
+        <div>
+          <h3>Full Market &amp; Competitor Assessment</h3>
+          <p>Prepared by Hatch Blue for the CREST Programme (2025). Covers TAM/SAM modelling for Atlantic Salmon and Whiteleg Shrimp aquafeed, the competitive ingredient landscape, and regional production breakdowns.</p>
+        </div>
+        <div class="market-report-action">
+          <button class="btn btn-outline" id="reportBtn">Request Full Report</button>
+          <span class="report-note">Submit the form below and we'll send the report to your email.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- wave -->
+  <div class="wave" style="background:var(--seaweed)">
+    <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C480,0 960,64 1440,24 L1440,64 L0,64 Z" fill="var(--brunswick)"/>
+    </svg>
+  </div>
 
   <!-- ══════════════════════════════════════
        MISSION STRIP
@@ -1297,6 +1422,17 @@
         });
       });
     }());
+
+    /* ── REPORT BUTTON → scroll to contact & pre-select ── */
+    document.getElementById('reportBtn').addEventListener('click', function () {
+      document.getElementById('interest').value = 'Investment / Funding';
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(function () {
+        const msg = document.getElementById('message');
+        if (!msg.value) msg.value = "I'd like to receive the full Market & Competitor Assessment report.";
+        msg.focus();
+      }, 700);
+    });
 
     /* ── CONTACT FORM — fetch() to Formspree, stay on page ── */
     document.getElementById('contactForm').addEventListener('submit', async function (e) {
