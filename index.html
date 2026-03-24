@@ -1081,6 +1081,64 @@
     }
 
     /* ─────────────────────────────────────────
+       COMPETITOR CHART
+    ───────────────────────────────────────── */
+    .comp-chart-wrap {
+      position: relative;
+      width: 100%;
+      background: rgba(0,10,4,0.35);
+      border: 1px solid rgba(65,187,172,0.14);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+    .comp-chart-wrap canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .comp-chart-tip {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+      background: rgba(8,28,12,0.96);
+      border: 1px solid rgba(65,187,172,0.28);
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: var(--celeste);
+      white-space: nowrap;
+      z-index: 10;
+      max-width: 230px;
+      line-height: 1.55;
+    }
+    .comp-chart-key {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 14px 0 40px;
+    }
+    .cck-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.73rem;
+      color: var(--celeste);
+      opacity: 0.48;
+    }
+    .cck-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      opacity: 0.85;
+    }
+    .cck-sep { color: rgba(178,254,254,0.2); font-size: 0.8rem; }
+
+    /* ─────────────────────────────────────────
        RESPONSIVE
     ───────────────────────────────────────── */
 
@@ -1170,6 +1228,10 @@
 
       /* Wave dividers: shorter on mobile */
       .wave { height: 40px; }
+
+      /* Competitor chart & table */
+      .comp-chart-key { margin-bottom: 28px; gap: 12px; }
+      .comp-col-hint { margin-bottom: 20px; }
     }
 
     /* ── Small phones (≤ 480px) ── */
@@ -1197,6 +1259,9 @@
 
       #mission-strip blockquote { font-size: 1.1rem; }
       #mission-strip { padding: 44px 0; }
+
+      .cck-item { font-size: 0.68rem; }
+      .comp-col-hint { font-size: 0.72rem; }
     }
   </style>
 </head>
@@ -1440,6 +1505,18 @@
       <h2 class="reveal reveal-delay-1">No Trade-offs.</h2>
       <p class="section-lead reveal reveal-delay-2">Every existing aquafeed ingredient forces a compromise — between nutrition and sustainability, or scalability and cost. SeaCrop is the first to eliminate the trade-off entirely.</p>
 
+      <div class="comp-chart-wrap reveal">
+        <canvas id="compChart" aria-label="Competitor positioning matrix"></canvas>
+        <div id="compChartTip" class="comp-chart-tip"></div>
+      </div>
+      <div class="comp-chart-key reveal">
+        <span class="cck-item"><span class="cck-dot" style="background:#41BBAC"></span>Low cost</span>
+        <span class="cck-item"><span class="cck-dot" style="background:#C89030"></span>Medium cost</span>
+        <span class="cck-item"><span class="cck-dot" style="background:#E05820"></span>High cost</span>
+        <span class="cck-sep">·</span>
+        <span class="cck-item">Bubble size = scalability</span>
+      </div>
+
       <p class="comp-col-hint reveal reveal-delay-3">Click any column header to focus on that dimension.</p>
 
       <div class="comp-table-wrap reveal">
@@ -1622,6 +1699,7 @@
 
         <form class="modal-form" id="reportForm" action="https://formspree.io/f/xreydbna" method="POST">
           <input type="hidden" name="interest" value="Report Download — Market &amp; Competitor Assessment">
+          <input type="hidden" name="_replyto" value="">
           <div class="form-row">
             <div class="field">
               <label for="rFname">First Name</label>
@@ -1812,6 +1890,196 @@
       });
     }());
 
+    /* ── COMPETITOR BUBBLE CHART ── */
+    (function () {
+      var canvas = document.getElementById('compChart');
+      if (!canvas) return;
+      var tip = document.getElementById('compChartTip');
+      var ctx = canvas.getContext('2d');
+
+      // x=Nutritional(0-5), y=Sustainability(0-5), r=scalability multiplier
+      // color=price indicator, lp=label placement
+      var PTS = [
+        { name:'Krill Meal',  x:4.70, y:0.85, r:0.85, color:'#E05820', lp:'above', tip:'Very Limited scalability<br>Cost: Very High'   },
+        { name:'Fish Oil',    x:3.80, y:1.55, r:1.05, color:'#D07820', lp:'left',  tip:'Limited scalability<br>Cost: High & Volatile'  },
+        { name:'Fish Meal',   x:4.60, y:1.40, r:1.25, color:'#C89030', lp:'right', tip:'Limited scalability<br>Cost: Volatile'          },
+        { name:'Soy Protein', x:2.70, y:2.90, r:2.20, color:'#41BBAC', lp:'left',  tip:'High scalability<br>Cost: Low (stable)'        },
+        { name:'SeaCrop',     x:4.05, y:4.60, r:3.70, color:'#41FFC9', lp:'inside',tip:'Scalability: Unlimited<br>Cost: Low (potential)', sc:true }
+      ];
+
+      var W, H, PL, PR, PT, PB, BR, dpr;
+
+      function setup() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W   = canvas.offsetWidth;
+        H   = W <= 480 ? Math.round(W * 0.88) : Math.round(W * 0.56);
+        PL  = Math.round(W * 0.115);
+        PR  = Math.round(W * 0.055);
+        PT  = Math.round(W * 0.04);
+        PB  = Math.round(W * 0.115);
+        BR  = W * 0.026;
+        canvas.width        = Math.round(W * dpr);
+        canvas.height       = Math.round(H * dpr);
+        canvas.style.height = H + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function toX(v) { return PL + (v / 5) * (W - PL - PR); }
+      function toY(v) { return H - PB - (v / 5) * (H - PT - PB); }
+      function br(r)  { return r * BR; }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        var GC = 'rgba(65,187,172,0.09)';
+        var AC = 'rgba(65,187,172,0.28)';
+        var LC = 'rgba(178,254,254,0.45)';
+        var TC = 'rgba(178,254,254,0.72)';
+        var fs  = Math.max(9,  Math.round(W * 0.019));
+        var fsS = Math.max(7,  Math.round(W * 0.014));
+
+        // Grid
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = GC;
+        for (var i = 0; i <= 5; i++) {
+          ctx.beginPath(); ctx.moveTo(toX(i), toY(0)); ctx.lineTo(toX(i), toY(5)); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(toX(0), toY(i)); ctx.lineTo(toX(5), toY(i)); ctx.stroke();
+        }
+
+        // Axes
+        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = AC;
+        ctx.beginPath(); ctx.moveTo(toX(0), toY(0)); ctx.lineTo(toX(5.08), toY(0)); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(toX(0), toY(0)); ctx.lineTo(toX(0), toY(5.08)); ctx.stroke();
+
+        // Arrow tips
+        ctx.fillStyle = AC;
+        ctx.beginPath(); ctx.moveTo(toX(5.08),toY(0)); ctx.lineTo(toX(5.08)-7,toY(0)-3); ctx.lineTo(toX(5.08)-7,toY(0)+3); ctx.fill();
+        ctx.beginPath(); ctx.moveTo(toX(0),toY(5.08)); ctx.lineTo(toX(0)-3,toY(5.08)+7); ctx.lineTo(toX(0)+3,toY(5.08)+7); ctx.fill();
+
+        // Tick numbers
+        ctx.font = fsS + 'px Montserrat,sans-serif';
+        ctx.fillStyle = LC;
+        ctx.textAlign = 'center';
+        for (var i = 1; i <= 5; i++) ctx.fillText(i, toX(i), toY(0) + Math.round(W*0.034));
+        ctx.textAlign = 'right';
+        for (var i = 1; i <= 5; i++) ctx.fillText(i, toX(0) - Math.round(W*0.008), toY(i) + fsS*0.4);
+
+        // Axis titles
+        ctx.font = '600 ' + fs + 'px Montserrat,sans-serif';
+        ctx.fillStyle = TC;
+        ctx.textAlign = 'center';
+        ctx.fillText('← Nutritional Profile →', (toX(0)+toX(5))/2, H - Math.round(W*0.022));
+        ctx.save();
+        ctx.translate(Math.round(W*0.026), (toY(0)+toY(5))/2);
+        ctx.rotate(-Math.PI/2);
+        ctx.fillText('← Sustainability →', 0, 0);
+        ctx.restore();
+
+        // Corner hints
+        ctx.font = fsS + 'px Montserrat,sans-serif';
+        ctx.fillStyle = 'rgba(178,254,254,0.22)';
+        ctx.textAlign = 'left';  ctx.fillText('Weaker', toX(0)+3, toY(0)+Math.round(W*0.032));
+        ctx.textAlign = 'right'; ctx.fillText('Stronger', toX(5)-2, toY(0)+Math.round(W*0.032));
+        ctx.textAlign = 'left';  ctx.fillText('Less', toX(0)+3, toY(0.05)-2);
+        ctx.fillText('More', toX(0)+3, toY(4.88));
+
+        // Bubbles — largest first so small ones render on top
+        var sorted = PTS.slice().sort(function(a,b){return b.r-a.r;});
+        sorted.forEach(function(pt) {
+          var cx=toX(pt.x), cy=toY(pt.y), r=br(pt.r);
+          if (pt.sc) { ctx.shadowColor='#41FFC9'; ctx.shadowBlur=22; }
+          ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+          ctx.fillStyle = pt.color + (pt.sc ? '2A' : '22');
+          ctx.fill();
+          ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
+          ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+          ctx.strokeStyle = pt.color + (pt.sc ? 'EE' : '88');
+          ctx.lineWidth = pt.sc ? 2.5 : 1.5;
+          ctx.stroke();
+        });
+
+        // Labels
+        var lfs = Math.max(9, Math.round(W*0.019));
+        PTS.forEach(function(pt) {
+          var cx=toX(pt.x), cy=toY(pt.y), r=br(pt.r), pad=W*0.016;
+          if (pt.sc) {
+            var f1=Math.max(11,Math.round(W*0.025));
+            var f2=Math.max(8, Math.round(W*0.015));
+            ctx.textAlign='center';
+            ctx.font = '800 '+f1+'px Garet,Montserrat,sans-serif';
+            ctx.fillStyle = '#41FFC9';
+            ctx.shadowColor='rgba(65,255,201,0.55)'; ctx.shadowBlur=8;
+            ctx.fillText('SeaCrop', cx, cy - f2*0.25);
+            ctx.shadowBlur=0;
+            ctx.font = '700 '+f2+'px Montserrat,sans-serif';
+            ctx.fillStyle='rgba(65,255,201,0.62)';
+            ctx.fillText('★ BEST CHOICE', cx, cy+f1*0.95);
+            return;
+          }
+          // Skip labels on very small screens to avoid clutter
+          if (W < 340) return;
+          ctx.font='600 '+lfs+'px Montserrat,sans-serif';
+          ctx.fillStyle='rgba(178,254,254,0.85)';
+          var lx, ly;
+          switch(pt.lp) {
+            case 'above': lx=cx;        ly=cy-r-pad;       ctx.textAlign='center'; break;
+            case 'below': lx=cx;        ly=cy+r+pad+lfs;   ctx.textAlign='center'; break;
+            case 'left':  lx=cx-r-pad;  ly=cy+lfs*0.35;    ctx.textAlign='right';  break;
+            case 'right': lx=cx+r+pad;  ly=cy+lfs*0.35;    ctx.textAlign='left';   break;
+            default:      lx=cx;        ly=cy+lfs*0.35;    ctx.textAlign='center'; break;
+          }
+          ctx.fillText(pt.name, lx, ly);
+        });
+      }
+
+      function hit(mx,my) {
+        for (var i=0;i<PTS.length;i++){
+          var pt=PTS[i], cx=toX(pt.x), cy=toY(pt.y), r=br(pt.r), dx=mx-cx, dy=my-cy;
+          if (dx*dx+dy*dy<=r*r) return pt;
+        }
+        return null;
+      }
+
+      function showTip(pt, mx, my) {
+        tip.innerHTML = '<strong style="color:'+pt.color+'">'+pt.name+'</strong><br>'+pt.tip;
+        tip.style.opacity = '1';
+        var rect = canvas.getBoundingClientRect();
+        var sx = rect.width/W, sy = rect.height/H;
+        var tx = mx*sx+14, ty = my*sy-10;
+        if (tx+220>rect.width)  tx = mx*sx-220-14;
+        if (ty<0) ty=0;
+        if (ty+64>rect.height)  ty = rect.height-64;
+        tip.style.left = tx+'px';
+        tip.style.top  = ty+'px';
+      }
+
+      function coords(clientX, clientY) {
+        var rect=canvas.getBoundingClientRect();
+        return { x:(clientX-rect.left)*(W/rect.width), y:(clientY-rect.top)*(H/rect.height) };
+      }
+
+      canvas.addEventListener('mousemove', function(e) {
+        var p=coords(e.clientX,e.clientY), h=hit(p.x,p.y);
+        canvas.style.cursor = h?'pointer':'default';
+        if(h) showTip(h,p.x,p.y); else tip.style.opacity='0';
+      });
+      canvas.addEventListener('mouseleave', function(){ tip.style.opacity='0'; });
+      canvas.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        var t=e.touches[0], p=coords(t.clientX,t.clientY), h=hit(p.x,p.y);
+        if(h){ showTip(h,p.x,p.y); setTimeout(function(){tip.style.opacity='0';},2800); }
+      }, {passive:false});
+
+      var resizeTimer;
+      window.addEventListener('resize', function(){
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function(){ setup(); draw(); }, 80);
+      }, {passive:true});
+
+      setup();
+      draw();
+    }());
+
     /* ── COMPETITOR TABLE — column focus ── */
     (function () {
       const table = document.getElementById('compTable');
@@ -1884,6 +2152,9 @@
 
       manualDl.href = PDF_PATH;
       manualDl.setAttribute('download', 'SeaCrop - Market & Competitor Assessment 2025.pdf');
+      form.querySelector('input[name="email"]').addEventListener('input', function(){
+        form.querySelector('input[name="_replyto"]').value = this.value;
+      });
 
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
