@@ -17,7 +17,16 @@
       "Bash(ls \"/Users/arikpinto/Library/CloudStorage/OneDrive-SeaCorp/SeaCrop/Marketing/Website \\(Claude Code\\)/assets/branding/Marketing & Branding/Logos/\")",
       "Bash(ls \"/Users/arikpinto/Library/CloudStorage/OneDrive-SeaCorp/SeaCrop/Marketing/Website \\(Claude Code\\)/assets/images/\")",
       "Bash(find \"/Users/arikpinto/Library/CloudStorage/OneDrive-SeaCorp/SeaCrop/Marketing/Website \\(Claude Code\\)/assets\" -type f)",
-      "Bash(npm install -g vercel)"
+      "Bash(npm install -g vercel)",
+      "Bash(git --version)",
+      "Bash(gh --version)",
+      "Bash(git config --list --global)",
+      "Bash(security find-internet-password -s github.com)",
+      "Bash(git remote add origin https://github.com/ArikPinto/seacrop-website.git)",
+      "Bash(git push -u origin main)",
+      "Bash(git add .)",
+      "Bash(git commit -m \"Update copyright year to 2026\")",
+      "Bash(git push)"
     ],
     "additionalDirectories": [
       "/Users/arikpinto/.claude/projects/-Users-arikpinto-Library-CloudStorage-OneDrive-SeaCorp-SeaCrop-Marketing-Website--Claude-Code-",
