@@ -1116,27 +1116,63 @@
     }
     .comp-chart-key {
       display: flex;
-      align-items: center;
-      gap: 16px;
+      align-items: flex-start;
+      gap: 0;
       flex-wrap: wrap;
       margin: 14px 0 40px;
+      background: rgba(19,79,69,0.18);
+      border: 1px solid rgba(65,187,172,0.14);
+      border-radius: 10px;
+      padding: 18px 24px;
+    }
+    .cck-group {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      flex: 1;
+      min-width: 180px;
+    }
+    .cck-group + .cck-group {
+      border-left: 1px solid rgba(65,187,172,0.18);
+      padding-left: 24px;
+      margin-left: 24px;
+    }
+    .cck-label {
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--celadon);
+    }
+    .cck-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
     }
     .cck-item {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 0.73rem;
+      gap: 7px;
+      font-size: 0.76rem;
       color: var(--celeste);
-      opacity: 0.48;
+      opacity: 0.62;
     }
     .cck-dot {
-      width: 9px;
-      height: 9px;
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
       flex-shrink: 0;
-      opacity: 0.85;
     }
-    .cck-sep { color: rgba(178,254,254,0.2); font-size: 0.8rem; }
+    .cck-bubble {
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: rgba(178,254,254,0.18);
+      border: 1.5px solid rgba(178,254,254,0.38);
+    }
+    .cck-bubble-sm { width: 8px;  height: 8px;  }
+    .cck-bubble-md { width: 13px; height: 13px; }
+    .cck-bubble-lg { width: 20px; height: 20px; }
 
     /* ─────────────────────────────────────────
        RESPONSIVE
@@ -1230,7 +1266,8 @@
       .wave { height: 40px; }
 
       /* Competitor chart & table */
-      .comp-chart-key { margin-bottom: 28px; gap: 12px; }
+      .comp-chart-key { margin-bottom: 28px; padding: 14px 18px; }
+      .cck-group + .cck-group { border-left: none; padding-left: 0; margin-left: 0; border-top: 1px solid rgba(65,187,172,0.18); padding-top: 14px; margin-top: 2px; }
       .comp-col-hint { margin-bottom: 20px; }
     }
 
@@ -1510,11 +1547,22 @@
         <div id="compChartTip" class="comp-chart-tip"></div>
       </div>
       <div class="comp-chart-key reveal">
-        <span class="cck-item"><span class="cck-dot" style="background:#41BBAC"></span>Low cost</span>
-        <span class="cck-item"><span class="cck-dot" style="background:#C89030"></span>Medium cost</span>
-        <span class="cck-item"><span class="cck-dot" style="background:#E05820"></span>High cost</span>
-        <span class="cck-sep">·</span>
-        <span class="cck-item">Bubble size = scalability</span>
+        <div class="cck-group">
+          <span class="cck-label">Colour = Price level</span>
+          <div class="cck-row">
+            <span class="cck-item"><span class="cck-dot" style="background:#41BBAC"></span>Low</span>
+            <span class="cck-item"><span class="cck-dot" style="background:#C89030"></span>Medium</span>
+            <span class="cck-item"><span class="cck-dot" style="background:#E05820"></span>High / Very High</span>
+          </div>
+        </div>
+        <div class="cck-group">
+          <span class="cck-label">Size = Scalability potential</span>
+          <div class="cck-row">
+            <span class="cck-item"><span class="cck-bubble cck-bubble-sm"></span>Limited</span>
+            <span class="cck-item"><span class="cck-bubble cck-bubble-md"></span>High</span>
+            <span class="cck-item"><span class="cck-bubble cck-bubble-lg"></span>Unlimited</span>
+          </div>
+        </div>
       </div>
 
       <p class="comp-col-hint reveal reveal-delay-3">Click any column header to focus on that dimension.</p>
