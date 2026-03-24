@@ -827,6 +827,100 @@
     }
 
     /* ─────────────────────────────────────────
+       REPORT MODAL
+    ───────────────────────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(0, 13, 6, 0.82);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-box {
+      background: #0b2318;
+      border: 1px solid rgba(65,255,201,0.22);
+      border-radius: 14px;
+      padding: 44px 44px 40px;
+      width: 100%;
+      max-width: 500px;
+      position: relative;
+      transform: translateY(24px) scale(0.97);
+      transition: transform 0.3s var(--ease-out);
+    }
+    .modal-overlay.open .modal-box {
+      transform: translateY(0) scale(1);
+    }
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--celeste);
+      opacity: 0.45;
+      font-size: 1.4rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      padding: 4px 8px;
+    }
+    .modal-close:hover { opacity: 0.9; }
+    .modal-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--turquoise);
+      margin-bottom: 10px;
+    }
+    .modal-box h3 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .modal-sub {
+      font-size: 0.87rem;
+      color: var(--celeste);
+      opacity: 0.62;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .modal-form { display: flex; flex-direction: column; gap: 14px; }
+    .modal-thankyou {
+      display: none;
+      text-align: center;
+      padding: 20px 0 8px;
+    }
+    .modal-thankyou .modal-check {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+    }
+    .modal-thankyou h3 { margin-bottom: 8px; }
+    .modal-thankyou p {
+      font-size: 0.9rem;
+      color: var(--celeste);
+      opacity: 0.7;
+      line-height: 1.65;
+    }
+    @media (max-width: 560px) {
+      .modal-box { padding: 32px 24px 28px; }
+    }
+
+    /* ─────────────────────────────────────────
        RESPONSIVE
     ───────────────────────────────────────── */
 
@@ -1163,8 +1257,8 @@
           <p>Prepared by Hatch Blue for the CREST Programme (2025). Covers TAM/SAM modelling for Atlantic Salmon and Whiteleg Shrimp aquafeed, the competitive ingredient landscape, and regional production breakdowns.</p>
         </div>
         <div class="market-report-action">
-          <button class="btn btn-outline" id="reportBtn">Request Full Report</button>
-          <span class="report-note">Submit the form below and we'll send the report to your email.</span>
+          <button class="btn btn-outline" id="reportBtn">Download Full Report</button>
+          <span class="report-note">Free — enter your details and it downloads instantly.</span>
         </div>
       </div>
     </div>
@@ -1264,6 +1358,52 @@
       </div>
     </div>
   </footer>
+
+  <!-- ══════════════════════════════════════
+       REPORT MODAL
+  ══════════════════════════════════════ -->
+  <div class="modal-overlay" id="reportModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+
+      <div id="modalFormWrap">
+        <p class="modal-eyebrow">Market Report</p>
+        <h3 id="modalTitle">Get the Full Assessment</h3>
+        <p class="modal-sub">Enter your details and the Hatch Blue Market &amp; Competitor Assessment will download instantly.</p>
+
+        <form class="modal-form" id="reportForm" action="https://formspree.io/f/xreydbna" method="POST">
+          <input type="hidden" name="interest" value="Report Download — Market &amp; Competitor Assessment">
+          <div class="form-row">
+            <div class="field">
+              <label for="rFname">First Name</label>
+              <input type="text" id="rFname" name="first_name" placeholder="Jane" required>
+            </div>
+            <div class="field">
+              <label for="rLname">Last Name</label>
+              <input type="text" id="rLname" name="last_name" placeholder="Smith">
+            </div>
+          </div>
+          <div class="field">
+            <label for="rEmail">Email</label>
+            <input type="email" id="rEmail" name="email" placeholder="jane@company.com" required>
+          </div>
+          <div class="field">
+            <label for="rCompany">Company</label>
+            <input type="text" id="rCompany" name="company" placeholder="Acme Aquaculture">
+          </div>
+          <div class="form-submit" style="margin-top:4px">
+            <button type="submit" class="btn btn-primary" id="reportSubmitBtn">Download Report</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-thankyou" id="modalThankyou">
+        <div class="modal-check">✓</div>
+        <h3>Your download has started.</h3>
+        <p>If it didn't begin automatically, <a id="manualDownload" href="#" style="color:var(--turquoise)">click here</a>.</p>
+      </div>
+    </div>
+  </div>
 
   <!-- ══════════════════════════════════════
        SCRIPTS
@@ -1423,16 +1563,70 @@
       });
     }());
 
-    /* ── REPORT BUTTON → scroll to contact & pre-select ── */
-    document.getElementById('reportBtn').addEventListener('click', function () {
-      document.getElementById('interest').value = 'Investment / Funding';
-      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-      setTimeout(function () {
-        const msg = document.getElementById('message');
-        if (!msg.value) msg.value = "I'd like to receive the full Market & Competitor Assessment report.";
-        msg.focus();
-      }, 700);
-    });
+    /* ── REPORT MODAL ── */
+    (function () {
+      const PDF_PATH = 'assets/Market & Competitor Study - SeaCrop/FINAL_Market & Competitor Assessment_CREST 25H2_Seacrop_for share.pdf';
+
+      const overlay   = document.getElementById('reportModal');
+      const closeBtn  = document.getElementById('modalClose');
+      const form      = document.getElementById('reportForm');
+      const submitBtn = document.getElementById('reportSubmitBtn');
+      const formWrap  = document.getElementById('modalFormWrap');
+      const thankyou  = document.getElementById('modalThankyou');
+      const manualDl  = document.getElementById('manualDownload');
+
+      function openModal() {
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => form.querySelector('input[name="first_name"]').focus(), 300);
+      }
+
+      function closeModal() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      function triggerDownload() {
+        const a = document.createElement('a');
+        a.href = PDF_PATH;
+        a.download = 'SeaCrop - Market & Competitor Assessment 2025.pdf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+
+      document.getElementById('reportBtn').addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeModal();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeModal();
+      });
+
+      manualDl.href = PDF_PATH;
+      manualDl.setAttribute('download', 'SeaCrop - Market & Competitor Assessment 2025.pdf');
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        submitBtn.textContent = 'Sending…';
+        submitBtn.disabled = true;
+
+        try {
+          await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+        } catch (_) { /* non-blocking — download regardless */ }
+
+        triggerDownload();
+        formWrap.style.display = 'none';
+        thankyou.style.display = 'block';
+
+        setTimeout(closeModal, 4000);
+      });
+    }());
 
     /* ── CONTACT FORM — fetch() to Formspree, stay on page ── */
     document.getElementById('contactForm').addEventListener('submit', async function (e) {
