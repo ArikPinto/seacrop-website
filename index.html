@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SeaCrop harnesses marine microbial plankton to transform global nutrition. Electrostatic fibre technology — small particles, global impact.">
+  <title>SeaCrop — Small Particles. Global Impact.</title>
+  <link rel="icon" type="image/png" href="assets/images/seacrop-circular-lockup.png">
+
+  <!-- Google Fonts: Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <!-- Fontshare: Garet (brand primary) -->
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=garet@900,700,500,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────
+       DESIGN TOKENS
+    ───────────────────────────────────────── */
+    :root {
+      --seaweed:        #002E11;
+      --pakistan:       #006602;
+      --army:           #3A590B;
+      --brunswick:      #134F45;
+      --celadon:        #23807E;
+      --verdigris:      #41BBAC;
+      --moonstone:      #2E95B4;
+      --sky:            #55DAFD;
+      --electric:       #4AFCFE;
+      --celeste:        #B2FEFE;
+      --turquoise:      #41FFC9;
+
+      --bg-deep:        #000d06;
+      --bg-dark:        #021a0b;
+      --bg-mid:         #0a1e0e;
+
+      --font-display: 'Garet', 'Montserrat', sans-serif;
+      --font-body:    'Montserrat', sans-serif;
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ─────────────────────────────────────────
+       RESET
+    ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--seaweed);
+      color: var(--celeste);
+      font-family: var(--font-body);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    /* Scroll offset for fixed nav */
+    section[id], div[id] { scroll-margin-top: 80px; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ─────────────────────────────────────────
+       SCROLL REVEAL
+    ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─────────────────────────────────────────
+       NAVIGATION
+    ───────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 22px 0;
+      transition: background 0.35s ease, padding 0.35s ease, border-color 0.35s ease;
+      border-bottom: 1px solid transparent;
+    }
+    #navbar.scrolled {
+      background: rgba(0, 46, 17, 0.93);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 14px 0;
+      border-color: rgba(65, 255, 201, 0.12);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      z-index: 210;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .nav-logo img {
+      height: 45px;
+      width: auto;
+      display: block;
+      transition: opacity 0.2s;
+    }
+    .nav-logo:hover img { opacity: 0.8; }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      align-items: center;
+      gap: 36px;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--celeste);
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--turquoise); }
+    .nav-links .nav-cta {
+      background: var(--turquoise);
+      color: var(--seaweed) !important;
+      opacity: 1 !important;
+      padding: 9px 22px;
+      border-radius: 4px;
+      font-weight: 700;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+    .nav-links .nav-cta:hover {
+      background: var(--electric);
+      transform: translateY(-1px);
+    }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 210;
+      position: relative;
+    }
+    .hamburger span {
+      display: block;
+      height: 2px;
+      background: var(--celeste);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s, width 0.3s;
+    }
+    .hamburger span:nth-child(1) { width: 24px; }
+    .hamburger span:nth-child(2) { width: 18px; }
+    .hamburger span:nth-child(3) { width: 24px; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); width: 24px; }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 24px; }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--seaweed);
+      overflow: hidden;
+    }
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.55;
+    }
+    /* Gradient vignette so text stays readable */
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 50%, transparent 30%, rgba(0,46,17,0.7) 100%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding-top: 80px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--turquoise);
+      margin-bottom: 22px;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--turquoise);
+      flex-shrink: 0;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(3.2rem, 7.5vw, 5.8rem);
+      line-height: 1.02;
+      color: #fff;
+      letter-spacing: -0.025em;
+      margin-bottom: 28px;
+    }
+    h1 .accent { color: var(--turquoise); }
+    .hero-sub {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      font-weight: 400;
+      color: var(--celeste);
+      opacity: 0.82;
+      max-width: 560px;
+      line-height: 1.8;
+      margin-bottom: 44px;
+    }
+    .btn-group {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      padding: 15px 34px;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.22s var(--ease-out), box-shadow 0.22s, background 0.2s, color 0.2s;
+    }
+    .btn-primary {
+      background: var(--turquoise);
+      color: var(--seaweed);
+    }
+    .btn-primary:hover {
+      background: var(--electric);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px rgba(65,255,201,0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--turquoise);
+      border: 1.5px solid var(--turquoise);
+    }
+    .btn-outline:hover {
+      background: rgba(65,255,201,0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Scroll hint */
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--celeste);
+      opacity: 0.4;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      z-index: 2;
+      animation: scrollBounce 2.2s ease-in-out infinite;
+    }
+    .scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(to bottom, rgba(178,254,254,0.6), transparent);
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      55%       { transform: translateX(-50%) translateY(7px); }
+    }
+
+    /* ─────────────────────────────────────────
+       WAVE DIVIDERS
+    ───────────────────────────────────────── */
+    .wave {
+      display: block;
+      overflow: hidden;
+      line-height: 0;
+      height: 64px;
+    }
+    .wave svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ─────────────────────────────────────────
+       SHARED SECTION STYLES
+    ───────────────────────────────────────── */
+    .section-pad { padding: 110px 0; }
+
+    h2 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+      line-height: 1.12;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    h3 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .section-lead {
+      font-size: 1.05rem;
+      color: var(--celeste);
+      opacity: 0.78;
+      line-height: 1.85;
+      max-width: 580px;
+    }
+
+    /* ─────────────────────────────────────────
+       PROBLEM
+    ───────────────────────────────────────── */
+    #problem { background: var(--bg-dark); }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+      margin-top: 56px;
+    }
+    .problem-text p {
+      color: var(--celeste);
+      opacity: 0.76;
+      line-height: 1.85;
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+    .problem-text p:last-child { margin-bottom: 0; }
+
+    .stat-stack { display: flex; flex-direction: column; gap: 16px; }
+    .stat-card {
+      background: rgba(19, 79, 69, 0.2);
+      border: 1px solid rgba(65,187,172,0.18);
+      border-left: 3px solid var(--verdigris);
+      border-radius: 8px;
+      padding: 22px 26px;
+      transition: background 0.3s, border-left-color 0.3s;
+    }
+    .stat-card:hover {
+      background: rgba(19, 79, 69, 0.38);
+      border-left-color: var(--turquoise);
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 2.4rem;
+      line-height: 1;
+      color: var(--turquoise);
+      margin-bottom: 5px;
+    }
+    .stat-desc {
+      font-size: 0.875rem;
+      color: var(--celeste);
+      opacity: 0.7;
+      font-weight: 500;
+      line-height: 1.45;
+    }
+
+    /* ─────────────────────────────────────────
+       SOLUTION
+    ───────────────────────────────────────── */
+    #solution { background: var(--seaweed); }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 56px;
+    }
+    .solution-text p {
+      color: var(--celeste);
+      opacity: 0.76;
+      line-height: 1.85;
+      margin-bottom: 16px;
+      font-size: 1rem;
+    }
+    .solution-text strong { color: var(--turquoise); font-weight: 600; }
+
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .bullet-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 0.95rem;
+      color: var(--celeste);
+      opacity: 0.82;
+      line-height: 1.6;
+    }
+    .bullet-list li::before {
+      content: '';
+      display: block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--turquoise);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    /* CSS tech diagram */
+    .diagram {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 1;
+      margin: 0 auto;
+    }
+    .diagram-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid;
+      animation: ringPulse 4s ease-in-out infinite;
+    }
+    .diagram-ring:nth-child(1) {
+      inset: 5%;
+      border-color: rgba(65,187,172,0.25);
+      animation-delay: 0s;
+    }
+    .diagram-ring:nth-child(2) {
+      inset: 17%;
+      border-color: rgba(65,255,201,0.35);
+      animation-delay: 0.7s;
+    }
+    .diagram-ring:nth-child(3) {
+      inset: 30%;
+      border-color: rgba(85,218,253,0.45);
+      animation-delay: 1.4s;
+    }
+    @keyframes ringPulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50%       { transform: scale(1.04); opacity: 1; }
+    }
+    .diagram-core {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 22%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, var(--celadon), var(--brunswick));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 0 32px rgba(35,128,126,0.7),
+        0 0 80px rgba(65,255,201,0.2);
+    }
+    .diagram-core span {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.5rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--turquoise);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* ─────────────────────────────────────────
+       APPLICATIONS
+    ───────────────────────────────────────── */
+    #applications { background: var(--bg-mid); }
+
+    .apps-header { max-width: 580px; margin-bottom: 56px; }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .app-card {
+      position: relative;
+      background: rgba(19,79,69,0.18);
+      border: 1px solid rgba(65,187,172,0.14);
+      border-radius: 12px;
+      padding: 38px 30px 32px;
+      overflow: hidden;
+      transition: transform 0.3s var(--ease-out), background 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    .app-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--card-top, var(--verdigris));
+    }
+    .app-card:nth-child(1) { --card-top: var(--verdigris); }
+    .app-card:nth-child(2) { --card-top: var(--moonstone); }
+    .app-card:nth-child(3) { --card-top: var(--turquoise); }
+    .app-card:hover {
+      transform: translateY(-6px);
+      background: rgba(19,79,69,0.36);
+      border-color: rgba(65,187,172,0.32);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+    }
+    .app-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: rgba(65,187,172,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 22px;
+    }
+    .app-card p {
+      font-size: 0.9rem;
+      color: var(--celeste);
+      opacity: 0.7;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .app-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--turquoise);
+      opacity: 0.75;
+    }
+
+    /* ─────────────────────────────────────────
+       MISSION STRIP
+    ───────────────────────────────────────── */
+    #mission-strip {
+      background: var(--brunswick);
+      padding: 80px 0;
+      text-align: center;
+      border-top: 1px solid rgba(65,187,172,0.18);
+      border-bottom: 1px solid rgba(65,187,172,0.18);
+    }
+    #mission-strip blockquote {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      color: #fff;
+      line-height: 1.45;
+      max-width: 780px;
+      margin: 0 auto 18px;
+    }
+    #mission-strip cite {
+      font-style: normal;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--turquoise);
+      opacity: 0.75;
+    }
+
+    /* ─────────────────────────────────────────
+       CONTACT
+    ───────────────────────────────────────── */
+    #contact { background: var(--bg-dark); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      margin-top: 56px;
+    }
+    .contact-info p {
+      font-size: 1rem;
+      color: var(--celeste);
+      opacity: 0.75;
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+    .contact-info p:last-of-type { margin-bottom: 32px; }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--celeste);
+      opacity: 0.8;
+      margin-bottom: 10px;
+    }
+    .contact-detail .icon {
+      width: 18px;
+      text-align: center;
+      color: var(--turquoise);
+      flex-shrink: 0;
+    }
+    .contact-detail a {
+      color: var(--turquoise);
+      text-decoration: none;
+    }
+    .contact-detail a:hover { text-decoration: underline; }
+
+    /* Form */
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .field label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--celadon);
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      background: rgba(19,79,69,0.22);
+      border: 1px solid rgba(65,187,172,0.22);
+      border-radius: 6px;
+      padding: 13px 16px;
+      color: var(--celeste);
+      font-family: var(--font-body);
+      font-size: 0.93rem;
+      outline: none;
+      transition: border-color 0.22s, background 0.22s;
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--turquoise);
+      background: rgba(19,79,69,0.38);
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: rgba(178,254,254,0.3); }
+    .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2341BBAC' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px; }
+    .field select option { background: #134F45; color: var(--celeste); }
+    .field textarea { resize: vertical; min-height: 120px; }
+    .form-submit .btn { width: 100%; justify-content: center; padding: 16px; font-size: 0.95rem; }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      background: var(--bg-deep);
+      padding: 36px 0;
+      border-top: 1px solid rgba(65,187,172,0.1);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logo img {
+      height: 45px;
+      width: auto;
+      display: block;
+      opacity: 0.75;
+    }
+    .form-thankyou {
+      display: none;
+      text-align: center;
+      padding: 48px 32px;
+      border: 1px solid rgba(65,187,172,0.25);
+      border-radius: 12px;
+      background: rgba(19,79,69,0.2);
+    }
+    .form-thankyou h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      color: var(--turquoise);
+    }
+    .form-thankyou p {
+      font-size: 1rem;
+      color: var(--celeste);
+      opacity: 0.75;
+    }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--celeste);
+      opacity: 0.3;
+    }
+
+    /* contact form wrapper — centred, max-width on wide screens */
+    .contact-form-wrap {
+      max-width: 680px;
+      margin-top: 48px;
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+
+    /* ── Tablet / large mobile (≤ 900px) ── */
+    @media (max-width: 900px) {
+      .section-pad { padding: 72px 0; }
+
+      /* Nav → hamburger */
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,46,17,0.97);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        z-index: 190;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links.open a { font-size: 1.1rem; }
+      .nav-links .nav-cta { padding: 13px 32px !important; font-size: 1rem; }
+
+      /* Stack all two-column layouts */
+      .problem-grid,
+      .solution-grid { grid-template-columns: 1fr; gap: 40px; }
+
+      /* Apps: 2-col on tablet, 1-col on mobile */
+      .apps-grid { grid-template-columns: 1fr 1fr; }
+
+      /* Diagram: smaller on tablet */
+      .diagram { max-width: 280px; margin: 0 auto; }
+
+      /* Form first/last name row → stack */
+      .form-row { grid-template-columns: 1fr; }
+
+      /* Contact: form wrapper full width */
+      .contact-form-wrap { max-width: 100%; }
+    }
+
+    /* ── Mobile (≤ 768px) ── */
+    @media (max-width: 768px) {
+      :root { --section-pad: 60px 0; }
+      .section-pad { padding: 60px 0; }
+      .container { padding: 0 20px; }
+
+      h1 { font-size: clamp(2.4rem, 9vw, 3.2rem); }
+      h2 { font-size: clamp(1.8rem, 6vw, 2.4rem); }
+
+      .hero-content { padding-top: 110px; }
+      .hero-sub { font-size: 0.98rem; }
+
+      /* Full-width CTA buttons */
+      .btn-group { flex-direction: column; align-items: stretch; }
+      .btn-group .btn { justify-content: center; }
+
+      /* Apps → single column */
+      .apps-grid { grid-template-columns: 1fr; }
+      .app-card { padding: 28px 22px; }
+
+      /* Diagram: hide on small screens to save space */
+      .diagram { display: none; }
+
+      /* Solution: no gap wasted on hidden diagram */
+      .solution-grid { gap: 0; }
+
+      /* Mission strip */
+      #mission-strip { padding: 52px 0; }
+
+      /* Stats */
+      .stat-card { padding: 18px 20px; }
+      .stat-num  { font-size: 2rem; }
+
+      /* Footer */
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .footer-logo img { height: 36px; }
+
+      /* Wave dividers: shorter on mobile */
+      .wave { height: 40px; }
+    }
+
+    /* ── Small phones (≤ 480px) ── */
+    @media (max-width: 480px) {
+      .section-pad { padding: 48px 0; }
+      .container { padding: 0 16px; }
+
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.65rem; }
+
+      .eyebrow { font-size: 0.65rem; }
+      .hero-sub { font-size: 0.93rem; line-height: 1.7; }
+      .section-lead { font-size: 0.95rem; }
+
+      .btn { padding: 13px 22px; font-size: 0.85rem; }
+
+      .stat-num { font-size: 1.8rem; }
+      .stat-desc { font-size: 0.82rem; }
+
+      .app-card { padding: 24px 18px; }
+      h3 { font-size: 1.1rem; }
+
+      .nav-logo img { height: 36px; }
+      .scroll-hint { display: none; }
+
+      #mission-strip blockquote { font-size: 1.1rem; }
+      #mission-strip { padding: 44px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       NAV
+  ══════════════════════════════════════ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <img src="assets/images/seacrop-logo-turquoise.png" alt="SeaCrop">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#problem">The Problem</a></li>
+        <li><a href="#solution">Our Solution</a></li>
+        <li><a href="#applications">Applications</a></li>
+        <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+
+    <div class="container">
+      <div class="hero-content">
+        <p class="eyebrow">Marine Microbial Innovation</p>
+        <h1>
+          Small Particles.<br>
+          <span class="accent">Global Impact.</span>
+        </h1>
+        <p class="hero-sub">
+          We're harvesting the ocean's smallest lifeforms — phytoplankton — to solve humanity's most urgent challenge. Sustainable nutrition at planetary scale, in harmony with the ocean.
+        </p>
+        <div class="btn-group">
+          <a href="#solution" class="btn btn-primary">Learn More</a>
+          <a href="#contact" class="btn btn-outline">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">Scroll</div>
+  </section>
+
+  <!-- wave -->
+  <div class="wave" style="background:var(--seaweed)">
+    <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,32 C240,64 480,0 720,32 C960,64 1200,0 1440,32 L1440,64 L0,64 Z" fill="#021a0b"/>
+    </svg>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PROBLEM
+  ══════════════════════════════════════ -->
+  <section id="problem" class="section-pad">
+    <div class="container">
+      <p class="eyebrow reveal">The Challenge</p>
+      <h2 class="reveal reveal-delay-1">The World's Food Systems<br>Are Breaking Down</h2>
+
+      <div class="problem-grid">
+        <div class="problem-text reveal reveal-delay-2">
+          <p>Over 2 billion people face food insecurity today. Traditional agriculture consumes 70% of global freshwater, destroys ecosystems, and is running out of room to grow — literally. The systems we depend on were built for a different world.</p>
+          <p>Conventional protein sources — soy, fishmeal, grain-fed livestock — are resource-intensive and ecologically destructive. Fishmeal alone drives overfishing. Soy drives deforestation. Neither can sustainably scale to feed 10 billion people by 2050.</p>
+          <p>We need a fundamentally different answer. Not a marginal improvement on broken systems, but a new paradigm — one found not on land, but in the ocean, in the most abundant lifeforms on Earth.</p>
+        </div>
+        <div class="stat-stack">
+          <div class="stat-card reveal reveal-delay-1">
+            <div class="stat-num">2B+</div>
+            <div class="stat-desc">people face food insecurity worldwide today</div>
+          </div>
+          <div class="stat-card reveal reveal-delay-2">
+            <div class="stat-num">70%</div>
+            <div class="stat-desc">of global freshwater consumed by agriculture</div>
+          </div>
+          <div class="stat-card reveal reveal-delay-3">
+            <div class="stat-num">50%</div>
+            <div class="stat-desc">of Earth's primary productivity generated by phytoplankton</div>
+          </div>
+          <div class="stat-card reveal reveal-delay-4">
+            <div class="stat-num">10B</div>
+            <div class="stat-desc">people to feed by 2050 — current food systems won't cope</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- wave -->
+  <div class="wave" style="background:var(--bg-dark)">
+    <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 C360,64 1080,0 1440,48 L1440,64 L0,64 Z" fill="var(--seaweed)"/>
+    </svg>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SOLUTION
+  ══════════════════════════════════════ -->
+  <section id="solution" class="section-pad">
+    <div class="container">
+      <p class="eyebrow reveal">Our Technology</p>
+      <h2 class="reveal reveal-delay-1">We Found the Answer<br>in the Ocean</h2>
+
+      <div class="solution-grid">
+        <div class="solution-text reveal reveal-delay-2">
+          <p>Phytoplankton are everywhere — up to <strong>100 billion organisms per litre</strong> of seawater. They produce half the world's oxygen, anchor the marine food chain, and are packed with protein, omega-3 fatty acids, and essential micronutrients. The ocean has been producing them for 3 billion years.</p>
+          <p>The missing piece was harvesting them efficiently, without harming the ecosystems that depend on them. Every existing method was either too slow, too destructive, or too expensive to scale.</p>
+          <p>SeaCrop's breakthrough: a curtain of <strong>positively charged electrostatic fibres</strong>. Phytoplankton naturally carry a negative charge. As ocean water flows through the fibre curtain, plankton adhere gently — no nets, no chemicals, no pressure. The ocean keeps flowing. The plankton are captured. The ecosystem is untouched.</p>
+
+          <ul class="bullet-list">
+            <li>Non-destructive capture preserves full nutritional integrity of the biomass</li>
+            <li>Deployable in open ocean and eutrophic dead zones, actively restoring marine balance</li>
+            <li>Scales from pilot systems to industrial volumes with the same core technology</li>
+            <li>Zero freshwater required — powered by ocean currents and natural plankton behaviour</li>
+          </ul>
+        </div>
+
+        <div class="diagram reveal reveal-delay-3" id="diagram">
+          <div class="diagram-ring"></div>
+          <div class="diagram-ring"></div>
+          <div class="diagram-ring"></div>
+          <div class="diagram-core">
+            <span>Electrostatic<br>Capture</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- wave -->
+  <div class="wave" style="background:var(--seaweed)">
+    <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,48 C480,0 960,64 1440,16 L1440,64 L0,64 Z" fill="var(--bg-mid)"/>
+    </svg>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       APPLICATIONS
+  ══════════════════════════════════════ -->
+  <section id="applications" class="section-pad">
+    <div class="container">
+      <div class="apps-header">
+        <p class="eyebrow reveal">Applications</p>
+        <h2 class="reveal reveal-delay-1">One Resource.<br>Many Solutions.</h2>
+        <p class="section-lead reveal reveal-delay-2">SeaCrop's plankton biomass is a versatile, high-value input for the industries that matter most — without compromising the ocean that produces it.</p>
+      </div>
+
+      <div class="apps-grid">
+        <div class="app-card reveal reveal-delay-1">
+          <div class="app-icon">🐟</div>
+          <h3>Aquaculture</h3>
+          <p>Replace energy-intensive fishmeal with a direct, ocean-derived protein source. SeaCrop biomass delivers the omega-3s and micronutrients farmed fish need — sourced sustainably, at scale, without depleting wild fish populations.</p>
+          <span class="app-tag">Fish Farming</span>
+        </div>
+        <div class="app-card reveal reveal-delay-2">
+          <div class="app-icon">🌾</div>
+          <h3>Livestock Feed</h3>
+          <p>Reduce dependence on land-intensive soy and grain-based feeds. Phytoplankton biomass is a high-protein, nutrient-dense supplement for poultry, pigs, and cattle — lowering the environmental footprint of meat and dairy production.</p>
+          <span class="app-tag">Animal Nutrition</span>
+        </div>
+        <div class="app-card reveal reveal-delay-3">
+          <div class="app-icon">🌱</div>
+          <h3>Human Nutrition</h3>
+          <p>From functional food ingredients to nutraceuticals, SeaCrop opens a new category of ocean-derived nutrition. Clean-label, complete protein, traceable to source — for a growing global market demanding better answers.</p>
+          <span class="app-tag">Food &amp; Nutraceuticals</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       MISSION STRIP
+  ══════════════════════════════════════ -->
+  <section id="mission-strip">
+    <div class="container">
+      <blockquote class="reveal">"The smallest particles can make the biggest impact."</blockquote>
+      <cite class="reveal reveal-delay-1">SeaCrop — Small Particles. Global Impact.</cite>
+    </div>
+  </section>
+
+  <!-- wave -->
+  <div class="wave" style="background:var(--brunswick)">
+    <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,16 C360,64 1080,0 1440,40 L1440,64 L0,64 Z" fill="var(--bg-dark)"/>
+    </svg>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       CONTACT
+  ══════════════════════════════════════ -->
+  <section id="contact" class="section-pad">
+    <div class="container">
+      <p class="eyebrow reveal">Get in Touch</p>
+      <h2 class="reveal reveal-delay-1">Let's Build the<br>Future Together</h2>
+
+      <div class="contact-form-wrap">
+
+        <div class="form-thankyou" id="formThankyou">
+          <h3>Message received.</h3>
+          <p>Thank you for reaching out. We'll be in touch at <strong id="thankEmail"></strong> shortly.</p>
+        </div>
+
+        <form class="form reveal reveal-delay-3" id="contactForm" action="https://formspree.io/f/xreydbna" method="POST">
+          <input type="hidden" name="_replyto" value="arik@seacrop.co">
+          <div class="form-row">
+            <div class="field">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="first_name" placeholder="Jane" required>
+            </div>
+            <div class="field">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="last_name" placeholder="Smith">
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+          </div>
+          <div class="field">
+            <label for="interest">Area of Interest</label>
+            <select id="interest" name="interest">
+              <option value="">Select one…</option>
+              <option>Investment / Funding</option>
+              <option>Aquaculture Partnership</option>
+              <option>Livestock / Feed Industry</option>
+              <option>Human Nutrition / Food Industry</option>
+              <option>Ocean Restoration</option>
+              <option>Research Collaboration</option>
+              <option>Media / Press</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your interest or how you'd like to work together…"></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </div>
+        </form>
+      </div><!-- /.contact-form-wrap -->
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <img src="assets/images/seacrop-logo-tagline-white.png" alt="SeaCrop — Small particles. Global impact.">
+        </div>
+        <div class="footer-copy">© 2025 SeaCrop. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════
+       SCRIPTS
+  ══════════════════════════════════════ -->
+  <script>
+    'use strict';
+
+    /* ── NAV SCROLL STATE ── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* ── HAMBURGER MENU ── */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    /* ── SCROLL REVEAL ── */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* ── HERO PARTICLE CANVAS ── */
+    (function () {
+      const canvas = document.getElementById('hero-canvas');
+      const ctx    = canvas.getContext('2d');
+      const PALETTE = ['#41BBAC', '#41FFC9', '#4AFCFE', '#55DAFD', '#23807E', '#2E95B4', '#B2FEFE'];
+      let W, H, pts;
+
+      function resize() {
+        W = canvas.width  = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+      }
+
+      function mkPt() {
+        return {
+          x:  Math.random() * W,
+          y:  Math.random() * H,
+          r:  Math.random() * 2.2 + 0.4,
+          vx: (Math.random() - 0.5) * 0.28,
+          vy: (Math.random() - 0.5) * 0.28,
+          c:  PALETTE[Math.floor(Math.random() * PALETTE.length)],
+          a:  Math.random() * 0.55 + 0.15,
+        };
+      }
+
+      function init() { pts = Array.from({ length: 130 }, mkPt); }
+
+      function tick() {
+        ctx.clearRect(0, 0, W, H);
+
+        /* connections */
+        for (let i = 0; i < pts.length; i++) {
+          for (let j = i + 1; j < pts.length; j++) {
+            const dx = pts[i].x - pts[j].x;
+            const dy = pts[i].y - pts[j].y;
+            const d  = Math.sqrt(dx * dx + dy * dy);
+            if (d < 110) {
+              ctx.beginPath();
+              ctx.moveTo(pts[i].x, pts[i].y);
+              ctx.lineTo(pts[j].x, pts[j].y);
+              ctx.strokeStyle = `rgba(65,187,172,${(1 - d / 110) * 0.1})`;
+              ctx.lineWidth   = 0.7;
+              ctx.stroke();
+            }
+          }
+        }
+
+        /* dots */
+        pts.forEach(p => {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0) p.x = W;
+          if (p.x > W) p.x = 0;
+          if (p.y < 0) p.y = H;
+          if (p.y > H) p.y = 0;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          /* build hex alpha */
+          const alpha = Math.round(p.a * 255).toString(16).padStart(2, '0');
+          ctx.fillStyle = p.c + alpha;
+          ctx.fill();
+        });
+
+        requestAnimationFrame(tick);
+      }
+
+      window.addEventListener('resize', () => { resize(); init(); }, { passive: true });
+      resize(); init(); tick();
+    }());
+
+    /* ── TECH DIAGRAM DOTS ── */
+    (function () {
+      const diagram = document.getElementById('diagram');
+      if (!diagram) return;
+
+      const palette = ['#41FFC9', '#41BBAC', '#55DAFD', '#4AFCFE', '#2E95B4', '#23807E'];
+
+      // rings: [{angleDeg, radiusPct}]
+      const rings = [
+        { angles: [0, 60, 120, 180, 240, 300], r: 40, size: [5, 7] },
+        { angles: [30, 90, 150, 210, 270, 330], r: 28, size: [4, 6] },
+      ];
+
+      const styleTag = document.createElement('style');
+      styleTag.textContent = `
+        @keyframes dotFloat {
+          0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
+          50%       { opacity: 1;    transform: translate(-50%, -50%) scale(1.4); }
+        }
+      `;
+      document.head.appendChild(styleTag);
+
+      rings.forEach(ring => {
+        ring.angles.forEach((angleDeg, idx) => {
+          const rad   = angleDeg * Math.PI / 180;
+          const topPct  = 50 + Math.sin(rad) * ring.r;
+          const leftPct = 50 + Math.cos(rad) * ring.r;
+          const size  = ring.size[0] + Math.random() * (ring.size[1] - ring.size[0]);
+          const color = palette[Math.floor(Math.random() * palette.length)];
+          const dur   = 2 + idx * 0.3;
+          const delay = -(Math.random() * dur);
+
+          const dot = document.createElement('div');
+          dot.style.cssText = `
+            position: absolute;
+            width:  ${size}px;
+            height: ${size}px;
+            background: ${color};
+            border-radius: 50%;
+            top:  ${topPct}%;
+            left: ${leftPct}%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 8px ${color}90;
+            animation: dotFloat ${dur}s ease-in-out ${delay}s infinite;
+          `;
+          diagram.appendChild(dot);
+        });
+      });
+    }());
+
+    /* ── CONTACT FORM — fetch() to Formspree, stay on page ── */
+    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const form = this;
+      const btn  = form.querySelector('button[type="submit"]');
+      const emailVal = form.querySelector('#email').value;
+
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          document.getElementById('thankEmail').textContent = emailVal;
+          form.style.display = 'none';
+          document.getElementById('formThankyou').style.display = 'block';
+        } else {
+          const data = await res.json();
+          const msg = data.errors ? data.errors.map(e => e.message).join(', ') : 'Submission failed. Please try again.';
+          alert(msg);
+          btn.textContent = 'Send Message';
+          btn.disabled = false;
+        }
+      } catch {
+        alert('Network error. Please check your connection and try again.');
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -lh \"/Users/arikpinto/Library/CloudStorage/OneDrive-SeaCorp/SeaCrop/Marketing/Website \\(Claude Code\\)/\")",
+      "Bash(python3 -c \"import pdfplumber\")",
+      "Bash(python3 -c \"import pypdf; print\\(''pypdf ok''\\)\")",
+      "Bash(python3 -c \"import PyPDF2; print\\(''PyPDF2 ok''\\)\")",
+      "Bash(python3 -c \"import fitz; print\\(''pymupdf ok''\\)\")",
+      "Bash(pip3 install pypdf --quiet)",
+      "Bash(python3 -c \":*)",
+      "Read(//tmp/**)",
+      "Read(//private/tmp/**)",
+      "Bash(open -a \"Google Chrome\" \"/Users/arikpinto/Library/CloudStorage/OneDrive-SeaCorp/SeaCrop/Marketing/Website \\(Claude Code\\)/index.html\")",
+      "Bash(ls \"/Users/arikpinto/Library/CloudStorage/OneDrive-SeaCorp/SeaCrop/Marketing/Website \\(Claude Code\\)/\")",
+      "Bash(ls \"/Users/arikpinto/Library/CloudStorage/OneDrive-SeaCorp/SeaCrop/Marketing/Website \\(Claude Code\\)/assets/\")",
+      "Bash(unzip -o \"Marketing & Branding-20260320T101057Z-3-001.zip\" -d branding)",
+      "Bash(ls \"/Users/arikpinto/Library/CloudStorage/OneDrive-SeaCorp/SeaCrop/Marketing/Website \\(Claude Code\\)/assets/branding/Marketing & Branding/Logos/\")",
+      "Bash(ls \"/Users/arikpinto/Library/CloudStorage/OneDrive-SeaCorp/SeaCrop/Marketing/Website \\(Claude Code\\)/assets/images/\")",
+      "Bash(find \"/Users/arikpinto/Library/CloudStorage/OneDrive-SeaCorp/SeaCrop/Marketing/Website \\(Claude Code\\)/assets\" -type f)",
+      "Bash(npm install -g vercel)"
+    ],
+    "additionalDirectories": [
+      "/Users/arikpinto/.claude/projects/-Users-arikpinto-Library-CloudStorage-OneDrive-SeaCorp-SeaCrop-Marketing-Website--Claude-Code-",
+      "/Users/arikpinto/Library/CloudStorage/OneDrive-SeaCorp/SeaCrop/Marketing/Website (Claude Code)/$BASE/Branding & Marketing - SeaCrop/SeaCrop Logo/PNG",
+      "/Users/arikpinto/Library/CloudStorage/OneDrive-SeaCorp/SeaCrop/Marketing/Website (Claude Code)/$BASE/assets"
+    ]
+  }
+}

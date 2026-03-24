@@ -1,0 +1,410 @@
+%!Adobe-FontList 1.24
+%Locale:0x409
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Invalid
+OutlineFileName:/Users/anandietsebeth/Library/CloudStorage/GoogleDrive-anandi@hatch.blue/.shortcut-targets-by-id/1dISEdc1ja0X2VoZgOC4b0PVpgNpTmDdt/1.1 SeaCrop - Shared Folder/3. Branding & Marketing - SeaCrop/Final work/SeaCrop StyleGuide FA Folder/Document fonts/AdobeFnt24.lst
+FileLength:11623
+FileModTime:777283893
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:ArialMT
+FamilyName:Arial
+StyleName:Regular
+MenuName:Arial
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Arial
+WritingScript:Roman
+OutlineFileName:/Users/anandietsebeth/Library/CloudStorage/GoogleDrive-anandi@hatch.blue/.shortcut-targets-by-id/1dISEdc1ja0X2VoZgOC4b0PVpgNpTmDdt/1.1 SeaCrop - Shared Folder/3. Branding & Marketing - SeaCrop/Final work/SeaCrop StyleGuide FA Folder/Document fonts/Arial.ttf
+DataFormat:sfntData
+hasSVG:no
+hasSBIX:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:773236
+FileModTime:726736780
+NameArray:0,Mac,4,Arial
+NameArray:0,Win,1,Arial
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Garet-Book
+FamilyName:Garet
+StyleName:Book
+MenuName:Garet Book
+StyleBits:0
+WeightClass:300
+WidthClass:5
+AngleClass:0
+FullName:Garet Book
+WritingScript:Roman
+OutlineFileName:/Users/anandietsebeth/Library/CloudStorage/GoogleDrive-anandi@hatch.blue/.shortcut-targets-by-id/1dISEdc1ja0X2VoZgOC4b0PVpgNpTmDdt/1.1 SeaCrop - Shared Folder/3. Branding & Marketing - SeaCrop/Final work/SeaCrop StyleGuide FA Folder/Document fonts/Garet-Book.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasSBIX:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:101976
+FileModTime:674153194
+NameArray:0,Mac,4,Garet Book
+NameArray:0,Win,1,Garet Book
+NameArray:0,Win,16,Garet
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Gontserrat-Black
+FamilyName:Montserrat
+StyleName:Black
+MenuName:Gontserrat Black
+StyleBits:0
+WeightClass:900
+WidthClass:5
+AngleClass:0
+FullName:Gontserrat Black
+WritingScript:Roman
+OutlineFileName:/Users/anandietsebeth/Library/CloudStorage/GoogleDrive-anandi@hatch.blue/.shortcut-targets-by-id/1dISEdc1ja0X2VoZgOC4b0PVpgNpTmDdt/1.1 SeaCrop - Shared Folder/3. Branding & Marketing - SeaCrop/Final work/SeaCrop StyleGuide FA Folder/Document fonts/Gontserrat-Black.ttf
+DataFormat:sfntData
+hasSVG:no
+hasSBIX:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:167844
+FileModTime:616180502
+NameArray:0,Mac,4,Gontserrat Black
+NameArray:0,Win,1,Gontserrat Black
+NameArray:0,Win,16,Montserrat
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Gontserrat-ExtraBold
+FamilyName:Montserrat
+StyleName:ExtraBold
+MenuName:Gontserrat ExtraBold
+StyleBits:0
+WeightClass:800
+WidthClass:5
+AngleClass:0
+FullName:Gontserrat ExtraBold
+WritingScript:Roman
+OutlineFileName:/Users/anandietsebeth/Library/CloudStorage/GoogleDrive-anandi@hatch.blue/.shortcut-targets-by-id/1dISEdc1ja0X2VoZgOC4b0PVpgNpTmDdt/1.1 SeaCrop - Shared Folder/3. Branding & Marketing - SeaCrop/Final work/SeaCrop StyleGuide FA Folder/Document fonts/Gontserrat-ExtraBold.ttf
+DataFormat:sfntData
+hasSVG:no
+hasSBIX:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:164552
+FileModTime:616180502
+NameArray:0,Mac,4,Gontserrat ExtraBold
+NameArray:0,Win,1,Gontserrat ExtraBold
+NameArray:0,Win,16,Montserrat
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Gontserrat-ExtraLight
+FamilyName:Montserrat
+StyleName:ExtraLight
+MenuName:Gontserrat ExtraLight
+StyleBits:0
+WeightClass:275
+WidthClass:5
+AngleClass:0
+FullName:Gontserrat ExtraLight
+WritingScript:Roman
+OutlineFileName:/Users/anandietsebeth/Library/CloudStorage/GoogleDrive-anandi@hatch.blue/.shortcut-targets-by-id/1dISEdc1ja0X2VoZgOC4b0PVpgNpTmDdt/1.1 SeaCrop - Shared Folder/3. Branding & Marketing - SeaCrop/Final work/SeaCrop StyleGuide FA Folder/Document fonts/Gontserrat-ExtraLight.ttf
+DataFormat:sfntData
+hasSVG:no
+hasSBIX:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:169612
+FileModTime:616180502
+NameArray:0,Mac,4,Gontserrat ExtraLight
+NameArray:0,Win,1,Gontserrat ExtraLight
+NameArray:0,Win,16,Montserrat
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Gontserrat-Light
+FamilyName:Montserrat
+StyleName:Light
+MenuName:Gontserrat Light
+StyleBits:0
+WeightClass:300
+WidthClass:5
+AngleClass:0
+FullName:Gontserrat Light
+WritingScript:Roman
+OutlineFileName:/Users/anandietsebeth/Library/CloudStorage/GoogleDrive-anandi@hatch.blue/.shortcut-targets-by-id/1dISEdc1ja0X2VoZgOC4b0PVpgNpTmDdt/1.1 SeaCrop - Shared Folder/3. Branding & Marketing - SeaCrop/Final work/SeaCrop StyleGuide FA Folder/Document fonts/Gontserrat-Light.ttf
+DataFormat:sfntData
+hasSVG:no
+hasSBIX:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:165120
+FileModTime:616180502
+NameArray:0,Mac,4,Gontserrat Light
+NameArray:0,Win,1,Gontserrat Light
+NameArray:0,Win,16,Montserrat
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Gontserrat-LightItalic
+FamilyName:Montserrat
+StyleName:Light Italic
+MenuName:Gontserrat Light
+StyleBits:1
+WeightClass:300
+WidthClass:5
+AngleClass:1
+FullName:Gontserrat Light Italic
+WritingScript:Roman
+OutlineFileName:/Users/anandietsebeth/Library/CloudStorage/GoogleDrive-anandi@hatch.blue/.shortcut-targets-by-id/1dISEdc1ja0X2VoZgOC4b0PVpgNpTmDdt/1.1 SeaCrop - Shared Folder/3. Branding & Marketing - SeaCrop/Final work/SeaCrop StyleGuide FA Folder/Document fonts/Gontserrat-LightItalic.ttf
+DataFormat:sfntData
+hasSVG:no
+hasSBIX:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:168592
+FileModTime:616180502
+NameArray:0,Mac,4,Gontserrat Light Italic
+NameArray:0,Win,1,Gontserrat Light
+NameArray:0,Win,16,Montserrat
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Gontserrat-Medium
+FamilyName:Montserrat
+StyleName:Medium
+MenuName:Gontserrat Medium
+StyleBits:0
+WeightClass:500
+WidthClass:5
+AngleClass:0
+FullName:Gontserrat Medium
+WritingScript:Roman
+OutlineFileName:/Users/anandietsebeth/Library/CloudStorage/GoogleDrive-anandi@hatch.blue/.shortcut-targets-by-id/1dISEdc1ja0X2VoZgOC4b0PVpgNpTmDdt/1.1 SeaCrop - Shared Folder/3. Branding & Marketing - SeaCrop/Final work/SeaCrop StyleGuide FA Folder/Document fonts/Gontserrat-Medium.ttf
+DataFormat:sfntData
+hasSVG:no
+hasSBIX:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:165668
+FileModTime:616180502
+NameArray:0,Mac,4,Gontserrat Medium
+NameArray:0,Win,1,Gontserrat Medium
+NameArray:0,Win,16,Montserrat
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Gontserrat-SemiBold
+FamilyName:Montserrat
+StyleName:SemiBold
+MenuName:Gontserrat SemiBold
+StyleBits:0
+WeightClass:600
+WidthClass:5
+AngleClass:0
+FullName:Gontserrat SemiBold
+WritingScript:Roman
+OutlineFileName:/Users/anandietsebeth/Library/CloudStorage/GoogleDrive-anandi@hatch.blue/.shortcut-targets-by-id/1dISEdc1ja0X2VoZgOC4b0PVpgNpTmDdt/1.1 SeaCrop - Shared Folder/3. Branding & Marketing - SeaCrop/Final work/SeaCrop StyleGuide FA Folder/Document fonts/Gontserrat-SemiBold.ttf
+DataFormat:sfntData
+hasSVG:no
+hasSBIX:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:165224
+FileModTime:616180502
+NameArray:0,Mac,4,Gontserrat SemiBold
+NameArray:0,Win,1,Gontserrat SemiBold
+NameArray:0,Win,16,Montserrat
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Gontserrat-SemiBoldItalic
+FamilyName:Montserrat
+StyleName:SemiBold Italic
+MenuName:Gontserrat SemiBold
+StyleBits:1
+WeightClass:600
+WidthClass:5
+AngleClass:1
+FullName:Gontserrat SemiBold Italic
+WritingScript:Roman
+OutlineFileName:/Users/anandietsebeth/Library/CloudStorage/GoogleDrive-anandi@hatch.blue/.shortcut-targets-by-id/1dISEdc1ja0X2VoZgOC4b0PVpgNpTmDdt/1.1 SeaCrop - Shared Folder/3. Branding & Marketing - SeaCrop/Final work/SeaCrop StyleGuide FA Folder/Document fonts/Gontserrat-SemiBoldItalic.ttf
+DataFormat:sfntData
+hasSVG:no
+hasSBIX:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:169356
+FileModTime:616180502
+NameArray:0,Mac,4,Gontserrat SemiBold Italic
+NameArray:0,Win,1,Gontserrat SemiBold
+NameArray:0,Win,16,Montserrat
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Gotham-Bold
+FamilyName:Gotham
+StyleName:Bold
+MenuName:Gotham
+StyleBits:2
+WeightClass:700
+WidthClass:5
+AngleClass:0
+FullName:Gotham Bold
+WritingScript:Roman
+OutlineFileName:/Users/anandietsebeth/Library/CloudStorage/GoogleDrive-anandi@hatch.blue/.shortcut-targets-by-id/1dISEdc1ja0X2VoZgOC4b0PVpgNpTmDdt/1.1 SeaCrop - Shared Folder/3. Branding & Marketing - SeaCrop/Final work/SeaCrop StyleGuide FA Folder/Document fonts/Gotham-Bold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasSBIX:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:166968
+FileModTime:331898400
+NameArray:0,Mac,18,Gotham Bold
+NameArray:0,Mac,4,Gotham Bold
+NameArray:0,Win,1,Gotham
+NameArray:0,Win,16,Gotham
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Gotham-Book
+FamilyName:Gotham
+StyleName:Book
+MenuName:Gotham
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Gotham Book
+WritingScript:Roman
+OutlineFileName:/Users/anandietsebeth/Library/CloudStorage/GoogleDrive-anandi@hatch.blue/.shortcut-targets-by-id/1dISEdc1ja0X2VoZgOC4b0PVpgNpTmDdt/1.1 SeaCrop - Shared Folder/3. Branding & Marketing - SeaCrop/Final work/SeaCrop StyleGuide FA Folder/Document fonts/Gotham-Book.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasSBIX:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:167288
+FileModTime:331898400
+NameArray:0,Mac,18,Gotham Book
+NameArray:0,Mac,4,Gotham Book
+NameArray:0,Win,1,Gotham
+NameArray:0,Win,16,Gotham
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MinionPro-Regular
+FamilyName:Minion Pro
+StyleName:Regular
+MenuName:Minion Pro
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Minion Pro
+WritingScript:Roman
+OutlineFileName:/Users/anandietsebeth/Library/CloudStorage/GoogleDrive-anandi@hatch.blue/.shortcut-targets-by-id/1dISEdc1ja0X2VoZgOC4b0PVpgNpTmDdt/1.1 SeaCrop - Shared Folder/3. Branding & Marketing - SeaCrop/Final work/SeaCrop StyleGuide FA Folder/Document fonts/MinionPro-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasSBIX:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:218640
+FileModTime:723501331
+DesignSize:110
+NameArray:0,Mac,4,Minion Pro
+NameArray:0,Win,1,Minion Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Montserrat-ThinItalic
+FamilyName:Montserrat
+StyleName:Thin Italic
+MenuName:Montserrat Thin
+FamilyPrefix:MontserratItalic
+StyleBits:1
+WeightClass:100
+WidthClass:5
+AngleClass:1
+FullName:Montserrat Thin Italic
+WritingScript:Roman
+OutlineFileName:/Users/anandietsebeth/Library/CloudStorage/GoogleDrive-anandi@hatch.blue/.shortcut-targets-by-id/1dISEdc1ja0X2VoZgOC4b0PVpgNpTmDdt/1.1 SeaCrop - Shared Folder/3. Branding & Marketing - SeaCrop/Final work/SeaCrop StyleGuide FA Folder/Document fonts/Montserrat-Italic-VariableFont_wght.ttf
+DataFormat:sfntData
+hasSVG:no
+hasSBIX:no
+hasCOLR:no
+VariableFontType:TrueTypeVariableFont
+FileLength:701156
+FileModTime:752633368
+NameArray:0,Win,1,Montserrat Thin
+NameArray:0,Win,16,Montserrat
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Montserrat-Thin
+FamilyName:Montserrat
+StyleName:Thin
+MenuName:Montserrat Thin
+FamilyPrefix:Montserrat
+StyleBits:0
+WeightClass:100
+WidthClass:5
+AngleClass:0
+FullName:Montserrat Thin
+WritingScript:Roman
+OutlineFileName:/Users/anandietsebeth/Library/CloudStorage/GoogleDrive-anandi@hatch.blue/.shortcut-targets-by-id/1dISEdc1ja0X2VoZgOC4b0PVpgNpTmDdt/1.1 SeaCrop - Shared Folder/3. Branding & Marketing - SeaCrop/Final work/SeaCrop StyleGuide FA Folder/Document fonts/Montserrat-VariableFont_wght.ttf
+DataFormat:sfntData
+hasSVG:no
+hasSBIX:no
+hasCOLR:no
+VariableFontType:TrueTypeVariableFont
+FileLength:688600
+FileModTime:752633368
+NameArray:0,Win,1,Montserrat Thin
+NameArray:0,Win,16,Montserrat
+%EndFont
+
