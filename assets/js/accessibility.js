@@ -48,17 +48,24 @@
     }
     .a11y-btn:hover { background: #f0fdfb; }
     .a11y-btn.active { background: #0d9488; color: white; border-color: #0d9488; }
-    body.a11y-high-contrast { filter: contrast(1.5); }
-    body.a11y-grayscale { filter: grayscale(1); }
-    body.a11y-large-text * { font-size: 120% !important; }
-    body.a11y-underline-links a { text-decoration: underline !important; }
-    body.a11y-pause-animations * { animation: none !important; transition: none !important; }
-    #a11y-toggle, #a11y-panel { filter: none !important; font-size: revert !important; }
+    #a11y-wrapper.a11y-high-contrast { filter: contrast(1.5); }
+    #a11y-wrapper.a11y-grayscale { filter: grayscale(1); }
+    #a11y-wrapper.a11y-large-text * { font-size: 120% !important; }
+    #a11y-wrapper.a11y-underline-links a { text-decoration: underline !important; }
+    #a11y-wrapper.a11y-pause-animations * { animation: none !important; transition: none !important; }
   `;
 
   const styleEl = document.createElement('style');
   styleEl.textContent = styles;
   document.head.appendChild(styleEl);
+
+  // Wrap all existing body content in #a11y-wrapper
+  const wrapper = document.createElement('div');
+  wrapper.id = 'a11y-wrapper';
+  while (document.body.firstChild) {
+    wrapper.appendChild(document.body.firstChild);
+  }
+  document.body.appendChild(wrapper);
 
   const toggle = document.createElement('button');
   toggle.id = 'a11y-toggle';
@@ -84,7 +91,7 @@
     btn.className = 'a11y-btn';
     btn.textContent = label;
     btn.addEventListener('click', () => {
-      document.body.classList.toggle(cls);
+      wrapper.classList.toggle(cls);
       btn.classList.toggle('active');
     });
     panel.appendChild(btn);
@@ -96,6 +103,7 @@
     toggle.setAttribute('aria-expanded', !isOpen);
   });
 
+  // Append toggle and panel directly to body, outside the wrapper
   document.body.appendChild(toggle);
   document.body.appendChild(panel);
 })();
