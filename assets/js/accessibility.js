@@ -53,6 +53,7 @@
     body.a11y-large-text * { font-size: 120% !important; }
     body.a11y-underline-links a { text-decoration: underline !important; }
     body.a11y-pause-animations * { animation: none !important; transition: none !important; }
+    #a11y-toggle, #a11y-panel { filter: none !important; font-size: revert !important; }
   `;
 
   const styleEl = document.createElement('style');
@@ -61,21 +62,21 @@
 
   const toggle = document.createElement('button');
   toggle.id = 'a11y-toggle';
-  toggle.setAttribute('aria-label', 'פתח תפריט נגישות');
+  toggle.setAttribute('aria-label', 'Open accessibility menu');
   toggle.textContent = '♿';
 
   const panel = document.createElement('div');
   panel.id = 'a11y-panel';
   panel.setAttribute('role', 'dialog');
-  panel.setAttribute('aria-label', 'אפשרויות נגישות');
-  panel.innerHTML = `<h3>נגישות</h3>`;
+  panel.setAttribute('aria-label', 'Accessibility options');
+  panel.innerHTML = `<h3>Accessibility</h3>`;
 
   const options = [
-    { label: '🔆 ניגודיות גבוהה', cls: 'a11y-high-contrast' },
-    { label: '⬛ גווני אפור', cls: 'a11y-grayscale' },
-    { label: '🔠 טקסט גדול', cls: 'a11y-large-text' },
-    { label: '🔗 הדגשת קישורים', cls: 'a11y-underline-links' },
-    { label: '⏸ עצור אנימציות', cls: 'a11y-pause-animations' },
+    { label: '🔆 High Contrast', cls: 'a11y-high-contrast' },
+    { label: '⬛ Grayscale', cls: 'a11y-grayscale' },
+    { label: '🔠 Large Text', cls: 'a11y-large-text' },
+    { label: '🔗 Underline Links', cls: 'a11y-underline-links' },
+    { label: '⏸ Pause Animations', cls: 'a11y-pause-animations' },
   ];
 
   options.forEach(({ label, cls }) => {
